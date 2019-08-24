@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `db_penilaian_sd` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `db_penilaian_sd`;
 -- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: db_penilaian_sd
@@ -27,7 +29,7 @@ CREATE TABLE `guru` (
   `nip` varchar(30) DEFAULT NULL,
   `nama_guru` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_guru`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +38,7 @@ CREATE TABLE `guru` (
 
 LOCK TABLES `guru` WRITE;
 /*!40000 ALTER TABLE `guru` DISABLE KEYS */;
+INSERT INTO `guru` VALUES (1,'12345','Kia Risma'),(2,'1','Putra Tou'),(3,'123','Pajar Kharisma'),(4,'12345678','Kharisma Putra'),(5,'1122','Muhammad Pajar'),(6,'112211','Hendro Kartiko'),(7,'1345','Bambang Pamungkas'),(8,'1234','Ilham Jaya Kusuma'),(9,'333','Markus Horison');
 /*!40000 ALTER TABLE `guru` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -48,6 +51,7 @@ DROP TABLE IF EXISTS `kelas`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `kelas` (
   `id_kelas` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_kelas` varchar(30) NOT NULL,
   `nama_kelas` varchar(30) DEFAULT NULL,
   `id_guru` int(11) DEFAULT NULL,
   `id_ta` int(11) DEFAULT NULL,
@@ -59,7 +63,7 @@ CREATE TABLE `kelas` (
   CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `kelas_ibfk_2` FOREIGN KEY (`id_ta`) REFERENCES `tahun_ajaran` (`id_ta`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `kelas_ibfk_3` FOREIGN KEY (`id_semester`) REFERENCES `semester` (`id_semester`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +72,7 @@ CREATE TABLE `kelas` (
 
 LOCK TABLES `kelas` WRITE;
 /*!40000 ALTER TABLE `kelas` DISABLE KEYS */;
+INSERT INTO `kelas` VALUES (1,'3A-Ganjil-2019/2020','3-A',2,1,1),(3,'3B-Ganjil-2019/2020','3-B',8,1,1);
 /*!40000 ALTER TABLE `kelas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,10 +85,11 @@ DROP TABLE IF EXISTS `mapel`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mapel` (
   `id_mapel` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_mapel` varchar(30) NOT NULL,
   `nama_mapel` varchar(30) DEFAULT NULL,
-  `jenis_mapel` varchar(30) DEFAULT NULL,
+  `jenis_mapel` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_mapel`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,6 +98,7 @@ CREATE TABLE `mapel` (
 
 LOCK TABLES `mapel` WRITE;
 /*!40000 ALTER TABLE `mapel` DISABLE KEYS */;
+INSERT INTO `mapel` VALUES (1,'IPA-1','Ilmu Pengetahuan Alam',0),(2,'B-1','Bernyanyi',1);
 /*!40000 ALTER TABLE `mapel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +254,7 @@ CREATE TABLE `semester` (
   `id_semester` int(11) NOT NULL AUTO_INCREMENT,
   `nama_semester` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_semester`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,6 +263,7 @@ CREATE TABLE `semester` (
 
 LOCK TABLES `semester` WRITE;
 /*!40000 ALTER TABLE `semester` DISABLE KEYS */;
+INSERT INTO `semester` VALUES (1,'Ganjil'),(3,'Genap');
 /*!40000 ALTER TABLE `semester` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +279,7 @@ CREATE TABLE `siswa` (
   `nis` varchar(30) DEFAULT NULL,
   `nama_siswa` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_siswa`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,6 +288,7 @@ CREATE TABLE `siswa` (
 
 LOCK TABLES `siswa` WRITE;
 /*!40000 ALTER TABLE `siswa` DISABLE KEYS */;
+INSERT INTO `siswa` VALUES (1,'14312057','Paiman'),(2,'14312058','Pajar');
 /*!40000 ALTER TABLE `siswa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +331,7 @@ CREATE TABLE `tahun_ajaran` (
   `id_ta` int(11) NOT NULL AUTO_INCREMENT,
   `nama_ta` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_ta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,6 +340,7 @@ CREATE TABLE `tahun_ajaran` (
 
 LOCK TABLES `tahun_ajaran` WRITE;
 /*!40000 ALTER TABLE `tahun_ajaran` DISABLE KEYS */;
+INSERT INTO `tahun_ajaran` VALUES (1,'2019/2020'),(3,'2020/2021');
 /*!40000 ALTER TABLE `tahun_ajaran` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,7 +361,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -360,7 +370,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin',999,-1,'$2y$10$Oy9fJhH6pOFhoS6BB/3Ci.wcymC8cjz6rPksgk5cyCYf86ZC3x0q6',NULL,'2019-08-05 10:35:49','2019-08-05 10:35:49'),(2,'mpkp',0,-1,'$2y$10$vAieYLFSuzVLjydVBfTn7eVl4.Vr9AVcl3IDTkTpa2Ti4W8lr8h32',NULL,'2019-08-05 10:37:46','2019-08-05 10:37:46');
+INSERT INTO `users` VALUES (1,'admin',999,-1,'$2y$10$s1oXmWs9evLPRWbu7DY1ceWPvzas5OYs0VYOFxXcBn5JWXh3LHdRC',NULL,'2019-08-05 10:37:46','2019-08-05 10:37:46'),(6,'mpkp',0,-1,'$2y$10$s1oXmWs9evLPRWbu7DY1ceWPvzas5OYs0VYOFxXcBn5JWXh3LHdRC',NULL,'2019-08-09 07:06:24','2019-08-09 07:06:24'),(7,'pajarkharisma',998,1,'$2y$10$ha/J8reLDw5HkwAZ.vlmj..H0HGdRaIPk1Y63MkZwO2vgm/BNv0y2',NULL,'2019-08-09 07:13:21','2019-08-09 08:43:02');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -377,4 +387,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-07 10:05:04
+-- Dump completed on 2019-08-24 13:20:13

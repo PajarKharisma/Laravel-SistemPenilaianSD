@@ -18,20 +18,22 @@
           @if (Auth::check())
           <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="hidden-xs"><i class="fa fa-user"></i><strong>   {{ Auth::user()->username }}</strong></span>
+                <span class="hidden-xs"><strong>{{ Auth::user()->username }}</strong></span>
               </a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ url('/home') }}" ><i class="fa fa-home"></i><span> Beranda</span></a></li>
-                    <li><a href="#"><i class="fa fa-gear"></i> Edit Profil</a></li>
-                    <li class="divider"></li>
-                    <li><a href="{{ route('logout') }}"
+              <ul class="dropdown-menu">
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-right">
+                    <a href="#" class="btn btn-default btn-flat">Edit Profi</a>
+                    <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>
-                        Keluar
+                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
+                  </div>
                 </li>
               </ul>
             </li>

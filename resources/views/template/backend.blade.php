@@ -19,6 +19,8 @@
     {!! Html::style('adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css') !!}
     {!! Html::style('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}
     {!! Html::style('css/jquery-confirm.min.css') !!}
+    <style>
+    </style>
     @yield('styles')
 
     <!-- Google Font -->
@@ -52,12 +54,8 @@
     {!! Html::script('adminlte/dist/js/demo.js') !!}
     {!! Html::script('js/jquery-confirm.min.js') !!}
     @yield('scripts')
-    <script>
-        $.widget.bridge('uibutton', $.ui.button);
-    </script>
 </head>
-
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue layout-boxed sidebar-mini" background="{{ asset('img/bg/login-bg.jpg') }}">
     <div class="wrapper">
         @include('template.header')
         @include('template.sidebar')

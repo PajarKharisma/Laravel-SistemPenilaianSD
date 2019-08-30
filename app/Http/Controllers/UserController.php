@@ -27,8 +27,8 @@ class UserController extends Controller {
     }
 
     public function getWaliKelas(){
-        $data['tabContent'] = 'superadmin.user.list';
         $request = Request::all();
+        $data['tabContent'] = 'superadmin.user.list';
         $data['tabs'][0] = 'active';
         $data['tabs'][1] = null;
         $searchtext= isset($request['searchtext']) ? $request['searchtext'] : null;
@@ -52,8 +52,8 @@ class UserController extends Controller {
     }
 
     public function getPimpinan(){
-        $data['tabContent'] = 'superadmin.user.list';
         $request = Request::all();
+        $data['tabContent'] = 'superadmin.user.list';
         $data['tabs'][0] = null;
         $data['tabs'][1] = 'active';
         $searchtext= isset($request['searchtext']) ? $request['searchtext'] : null;

@@ -13,11 +13,6 @@
     {!! Html::style('lte/bower_components/Ionicons/css/ionicons.min.css') !!}
     {!! Html::style('lte/dist/css/AdminLTE.min.css') !!}
     {!! Html::style('lte/dist/css/skins/_all-skins.min.css') !!}
-    {!! Html::style('lte/bower_components/morris.js/morris.css') !!}
-    {!! Html::style('lte/bower_components/jvectormap/jquery-jvectormap.css') !!}
-    {!! Html::style('lte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') !!}
-    {!! Html::style('lte/bower_components/bootstrap-daterangepicker/daterangepicker.css') !!}
-    {!! Html::style('lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}
     {!! Html::style('css/jquery-confirm.min.css') !!}
     <style>
     </style>
@@ -30,29 +25,8 @@
     {!! Html::script('lte/bower_components/jquery/dist/jquery.min.js') !!}
     {!! Html::script('lte/bower_components/jquery-ui/jquery-ui.min.js') !!}
     {!! Html::script('lte/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
-    <!-- Sparkline -->
-    {!! Html::script('lte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') !!}
-    <!-- jvectormap -->
-    {!! Html::script('lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') !!}
-    {!! Html::script('lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') !!}
-    <!-- jQuery Knob Chart -->
-    {!! Html::script('lte/bower_components/jquery-knob/dist/jquery.knob.min.js') !!}
-    <!-- daterangepicker -->
-    {!! Html::script('lte/bower_components/moment/min/moment.min.js') !!}
-    {!! Html::script('lte/bower_components/bootstrap-daterangepicker/daterangepicker.js') !!}
-    <!-- datepicker -->
-    {!! Html::script('lte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') !!}
-    <!-- Bootstrap WYSIHTML5 -->
-    {!! Html::script('lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') !!}
-    <!-- Slimscroll -->
-    {!! Html::script('lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') !!}
-    <!-- FastClick -->
-    {!! Html::script('lte/bower_components/fastclick/lib/fastclick.js') !!}
     <!-- AdminLTE App -->
     {!! Html::script('lte/dist/js/adminlte.min.js') !!}
-    <!-- AdminLTE for demo purposes -->
-    {!! Html::script('lte/dist/js/demo.js') !!}
-    {!! Html::script('js/jquery-confirm.min.js') !!}
     @yield('scripts')
 </head>
 <body class="hold-transition skin-blue layout-boxed sidebar-mini" background="{{ asset('img/bg/login-bg.jpg') }}">

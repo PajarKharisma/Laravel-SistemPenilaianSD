@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <!-- Bootstrap 3.3.7 -->
+    {!! Html::style('lte/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}
+    {!! Html::style('lte/bower_components/font-awesome/css/font-awesome.min.css') !!}
+    {!! Html::style('lte/bower_components/Ionicons/css/ionicons.min.css') !!}
+    {!! Html::style('lte/bower_components/font-awesome/css/font-awesome.min.css') !!}
+    {!! Html::style('lte/dist/css/AdminLTE.min.css') !!}
+    {!! Html::style('lte/dist/css/skins/_all-skins.min.css') !!}
+    {!! Html::style('css/jquery-confirm.min.css') !!}
+    {!! HTML::style('lte/plugins/iCheck/square/blue.css') !!}
 
-	{!! Html::style('loginres/vendor/bootstrap/css/bootstrap.min.css') !!}
-	{!! Html::style('loginres/fonts/font-awesome-4.7.0/css/font-awesome.min.css') !!}
-	{!! Html::style('loginres/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') !!}
-	{!! Html::style('loginres/vendor/animate/animate.css') !!}
-	{!! Html::style('loginres/vendor/css-hamburgers/hamburgers.min.css') !!}
-	{!! Html::style('loginres/vendor/animsition/css/animsition.min.css') !!}
-	{!! Html::style('loginres/vendor/select2/select2.min.css') !!}
-	{!! Html::style('loginres/vendor/daterangepicker/daterangepicker.css') !!}
-	{!! Html::style('loginres/css/util.css') !!}
-	{!! Html::style('loginres/css/main.css') !!}
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<style>
-		.center {
-			position: absolute;
-			top: 50%;
-			left:50%;
-			transform: translate(-50%,-50%);
-		}
-	</style>
+    {!! Html::script('lte/bower_components/jquery/dist/jquery.min.js') !!}
+    {!! Html::script('lte/bower_components/jquery-ui/jquery-ui.min.js') !!}
+    {!! Html::script('lte/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
+    {!! HTML::script('lte/plugins/iCheck/icheck.min.js') !!}
+    <!-- AdminLTE App -->
+    {!! Html::script('lte/dist/js/adminlte.min.js') !!}
+    <script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });
+    </script>
 </head>
-<body background="{{ asset('img/bg/login-bg.jpg') }}">
-	<div class="limiter">
-		<div class="center">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
-					@csrf
-					<span class="login100-form-title p-b-33">
-						Login Akun
-					</span>
-
-					<div class="wrap-input100 validate-input">
-						<input id="username" type="username" class="input100 @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="username">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-
-					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input id="password" type="password" class="input100" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="password">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-
-					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn" type="submit">
-							Login
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<body class="hold-transition" background="{{ asset('img/bg/login-bg.jpg') }}">
+    <div class="login-box" style="border-radius: 15px; background-color : white !important;" >
+        <div class="" style="padding-top:12px">    
+            <img class="img-responsive center-block" src="{{url('/img/toplogin.png')}}" >    
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Masuk untuk memulai sesi</p>
+            @include('errors.list')
+            <form action="{{ route('login') }}" method="post">
+                @csrf
+                <div class="form-group has-feedback">
+                    <input name="username" id="username" type="text" class="form-control" placeholder="Masukan Nama Pengguna" required>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input name="password" type="password" class="form-control" placeholder="Masukan Kata Sandi" required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox"> Ingat saya
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
+                </div>
+                </div>
+            </form>
+        </div>
+        <div> &nbsp;</div>
+        <!-- /.login-box-body -->
+    </div>
 </body>
 </html>

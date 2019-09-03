@@ -21,15 +21,17 @@ class GuruController extends Controller {
                 $query
                     ->where('nip',"LIKE",'%'.$searchtext.'%')
                     ->orWhere('nama_guru',"LIKE",'%'.$searchtext.'%');
-            })->paginate(7);
+            })->paginate(15);
         } else {
-            $data['datas'] = Guru::orderBy('id_guru','asc')->paginate(7);
+            $data['datas'] = Guru::orderBy('id_guru','asc')->paginate(15);
         }
+        $data['menuguru'] = 'active';
         return view('superadmin.guru.index')->with($data);
     }
 
     public function getCreate() {
-        return view('superadmin.guru.create');
+        $data['menuguru'] = 'active';
+        return view('superadmin.guru.create')->with($data);
     }
 
     public function postStore() {
@@ -49,6 +51,7 @@ class GuruController extends Controller {
     public function getEdit($id) {
         $edit = Guru::where('id_guru', '=', $id)->first();
         $data['edit'] = $edit;
+        $data['menuguru'] = 'active';
         return view('superadmin.guru.edit')->with($data);
     }
 

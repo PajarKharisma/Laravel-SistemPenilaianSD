@@ -20,15 +20,17 @@ class TahunAjaranController extends Controller {
             $data['datas'] = TahunAjaran::where(function($query)  use ($searchtext){
                 $query
                     ->where('nama_ta',"LIKE",'%'.$searchtext.'%');
-            })->paginate(7);
+            })->paginate(10);
         } else {
-            $data['datas'] = TahunAjaran::orderBy('id_ta','asc')->paginate(7);
+            $data['datas'] = TahunAjaran::orderBy('id_ta','asc')->paginate(10);
         }
+        $data['menuta'] = 'active';
         return view('superadmin.tahunajaran.index')->with($data);
     }
 
     public function getCreate() {
-        return view('superadmin.tahunajaran.create');
+        $data['menuta'] = 'active';
+        return view('superadmin.tahunajaran.create')->with($data);
     }
 
     public function postStore() {
@@ -47,6 +49,7 @@ class TahunAjaranController extends Controller {
     public function getEdit($id) {
         $edit = TahunAjaran::where('id_ta', '=', $id)->first();
         $data['edit'] = $edit;
+        $data['menuta'] = 'active';
         return view('superadmin.tahunajaran.edit')->with($data);
     }
 

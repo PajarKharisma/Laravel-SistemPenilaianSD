@@ -30,7 +30,8 @@ if(!isset($searchtext)){
         @if(isset($datas) && $datas->count() > 0)
         <div class="row">
             <div class="col-lg-12">
-                    <table class="table table-striped table-advance table-hover">
+                <div class="table-responsive" style=" height: 425px !important;overflow: auto">
+                    <table class="table table-striped table-advance table-bordered table-hover">
                         <thead>
                             <tr class="bg-primary">
                                 <th> Tahun Ajaran </th>
@@ -53,7 +54,8 @@ if(!isset($searchtext)){
                             @endforeach
                         </tbody>
                     </table>
-                {{ $datas->render() }}
+                    {{ $datas->render() }}
+                </div>
             </div>
         </div>
         @else

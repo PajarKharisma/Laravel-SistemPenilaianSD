@@ -22,6 +22,10 @@ Route::get('/kelas', 'KelasController@index');
 Route::get('/mapel', 'MapelController@index');
 Route::get('/mapel/daftar/{menu}', 'MapelController@indexMenu');
 
+Route::get('/siswakelas', 'SiswaKelasController@index');
+Route::get('/mapelkelas', 'MapelKelasController@index');
+Route::get('/nilai', 'NilaiController@index');
+
 AdvancedRoute::controllers([
     '/user' => 'UserController',
     '/tahunajaran' => 'TahunAjaranController',

@@ -21,15 +21,17 @@ class SiswaController extends Controller {
                 $query
                     ->where('nama_siswa',"LIKE",'%'.$searchtext.'%')
                     ->orWhere('nis',"LIKE",$searchtext.'%');
-            })->paginate(7);
+            })->paginate(10);
         } else {
-            $data['datas'] = Siswa::orderBy('id_siswa','asc')->paginate(7);
+            $data['datas'] = Siswa::orderBy('id_siswa','asc')->paginate(10);
         }
+        $data['menusiswa'] = 'active';
         return view('superadmin.siswa.index')->with($data);
     }
 
     public function getCreate() {
-        return view('superadmin.siswa.create');
+        $data['menusiswa'] = 'active';
+        return view('superadmin.siswa.create')->with($data);
     }
 
     public function postStore() {
@@ -49,6 +51,7 @@ class SiswaController extends Controller {
     public function getEdit($id) {
         $edit = Siswa::where('id_siswa', '=', $id)->first();
         $data['edit'] = $edit;
+        $data['menusiswa'] = 'active';
         return view('superadmin.siswa.edit')->with($data);
     }
 

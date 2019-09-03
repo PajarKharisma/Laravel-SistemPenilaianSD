@@ -21,15 +21,17 @@ class SemesterController extends Controller {
                 $query
                     ->where('id_semester',"LIKE",'%'.$searchtext.'%')
                     ->orWhere('nama_semester',"LIKE",$searchtext.'%');
-            })->paginate(7);
+            })->paginate(10);
         } else {
-            $data['datas'] = Semester::orderBy('id_semester','asc')->paginate(7);
+            $data['datas'] = Semester::orderBy('id_semester','asc')->paginate(10);
         }
+        $data['menusemester'] = 'active';
         return view('superadmin.semester.index')->with($data);
     }
 
     public function getCreate() {
-        return view('superadmin.semester.create');
+        $data['menusemester'] = 'active';
+        return view('superadmin.semester.create')->with($data);
     }
 
     public function postStore() {
@@ -48,6 +50,7 @@ class SemesterController extends Controller {
     public function getEdit($id) {
         $edit = Semester::where('id_semester', '=', $id)->first();
         $data['edit'] = $edit;
+        $data['menusemester'] = 'active';
         return view('superadmin.semester.edit')->with($data);
     }
 

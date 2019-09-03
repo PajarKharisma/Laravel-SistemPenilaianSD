@@ -27,13 +27,14 @@ class KelasController extends Controller {
                 $query
                     ->where('kode_kelas',"LIKE",'%'.$searchtext.'%')
                     ->orWhere('nama_kelas',"LIKE",'%'.$searchtext.'%');
-            })->paginate(7);
+            })->paginate(10);
         } else {
             $data['datas'] = Kelas::join('tahun_ajaran as ta','kelas.id_ta', '=', 'ta.id_ta')
             ->join('semester as s','kelas.id_semester','s.id_semester')
             ->join('guru as g','kelas.id_guru','g.id_guru')
-            ->paginate(7);
+            ->paginate(10);
         }
+        $data['menukelas'] = 'active';
         return view('superadmin.kelas.index')->with($data);
     }
 
@@ -42,6 +43,7 @@ class KelasController extends Controller {
         $data['datas_ta'] = TahunAjaran::orderBy('id_ta', 'asc')->get();
         $data['datas_semester'] = Semester::orderBy('id_semester', 'asc')->get();
         //return response()->json($data);
+        $data['menukelas'] = 'active';
         return view('superadmin.kelas.create')->with($data);
     }
 
@@ -71,6 +73,7 @@ class KelasController extends Controller {
             ->join('guru as g','kelas.id_guru','g.id_guru')
             ->where('id_kelas', $id)
             ->first();
+        $data['menukelas'] = 'active';
         return view('superadmin.kelas.edit')->with($data);
     }
 

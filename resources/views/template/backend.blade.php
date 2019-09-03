@@ -11,17 +11,12 @@
     {!! Html::style('lte/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}
     {!! Html::style('lte/bower_components/font-awesome/css/font-awesome.min.css') !!}
     {!! Html::style('lte/bower_components/Ionicons/css/ionicons.min.css') !!}
+    {!! Html::style('lte/bower_components/font-awesome/css/font-awesome.min.css') !!}
     {!! Html::style('lte/dist/css/AdminLTE.min.css') !!}
     {!! Html::style('lte/dist/css/skins/_all-skins.min.css') !!}
     {!! Html::style('css/jquery-confirm.min.css') !!}
-    <style>
-    </style>
     @yield('styles')
-
-    <!-- Google Font -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
+    
     {!! Html::script('lte/bower_components/jquery/dist/jquery.min.js') !!}
     {!! Html::script('lte/bower_components/jquery-ui/jquery-ui.min.js') !!}
     {!! Html::script('lte/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}

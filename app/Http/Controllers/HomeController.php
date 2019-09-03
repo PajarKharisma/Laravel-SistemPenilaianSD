@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Request;
+use App\User;
+use App\Kelas;
+use App\Guru;
 
 class HomeController extends Controller
 {
@@ -21,6 +25,14 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        return view('home');
+        $user = Auth::user();
+        $data['menuberanda'] = 'active';
+        if($user->jabatan == 998){
+            $data['walikelas'] = User::join('kelas as k','users.id_kelas', '=', 'k.id_kelas')
+                ->join('guru as g','k.id_guru','g.id_guru')
+                ->where('users.id_kelas',"=", $user->id_kelas)
+                ->first();
+        }
+        return view('home')->with($data);
     }
 }

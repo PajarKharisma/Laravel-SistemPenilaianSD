@@ -30,6 +30,7 @@
                     <select class="form-control select" style="width: 100%;" name="jenis_mapel" id="jenis_mapel">
                         <option value="0">Pengetahuan</option>
                         <option value="1">Keterampilan</option>
+                        <option value="2">Sikap</option>
                     </select>
                 </div>
             </div>

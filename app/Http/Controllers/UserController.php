@@ -40,13 +40,14 @@ class UserController extends Controller {
                     $query
                         ->where('username',"LIKE",'%'.$searchtext.'%')
                         ->orWhere('k.kode_kelas',"LIKE",'%'.$searchtext.'%');
-                })->paginate(7);
+                })->paginate(10);
         } else {
             $data['datas'] = User::
             join('kelas as k','users.id_kelas','=','k.id_kelas')
             ->where('jabatan','998')
-            ->paginate(7);
+            ->paginate(10);
         }
+        $data['menuuser'] = 'active';
         return view('superadmin.user.index')->with($data);
         //return response()->json($data);
     }
@@ -62,11 +63,12 @@ class UserController extends Controller {
                 ->where(function($query)  use ($searchtext){
                     $query
                         ->where('username',"LIKE",'%'.$searchtext.'%');
-                })->paginate(7);
+                })->paginate(10);
         } else {
             $data['datas'] = User::where('jabatan','0')
-            ->paginate(7);
+            ->paginate(10);
         }
+        $data['menuuser'] = 'active';
         return view('superadmin.user.index')->with($data);
     }
 
@@ -75,6 +77,7 @@ class UserController extends Controller {
             ->join('semester as s','kelas.id_semester','s.id_semester')
             ->join('guru as g','kelas.id_guru','g.id_guru')
             ->get();
+        $data['menuuser'] = 'active';
         return view('superadmin.user.create')->with($data);
     }
 
@@ -100,6 +103,7 @@ class UserController extends Controller {
             User::join('kelas as k','users.id_kelas','k.id_kelas')
             ->where('id', $id)
             ->first();
+        $data['menuuser'] = 'active';
         return view('superadmin.user.edit')->with($data);
     }
 

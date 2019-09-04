@@ -5,22 +5,22 @@
         </form>
     </div>
     <div class="col-md-6">
-        <a class="btn btn-success btn-sm pull-right" href="{{url('/mapel/create')}}">
+        <a class="btn btn-success btn-sm pull-right" href="{{url('/mapelkelas/create')}}">
             <i class="fa fa-plus"> Data Baru</i>
-        </a> 
+        </a>
     </div>
 </div>
 
 @if(isset($datas) && $datas->count() > 0)
 <div class="row">
     <div class="col-lg-12">
-        <div class="table-responsive" style=" height: 385px !important;overflow: auto">
+        <div class="table-responsive" style=" height: 345px !important;overflow: auto">
             <table class="table table-striped table-advance table-bordered table-hover">
                 <thead>
                     <tr class="bg-primary">
                         <th> Kode Mata Pelajaran </th>
-                        <th> Mata Pelajaran </th>
-                        <th> Jenis </th>
+                        <th> Nama Mata Pelajaran </th>
+                        <th> Jenis Mata Pelajaran </th>
                         <th> Aksi </th>
                     </tr>
                 </thead>
@@ -29,17 +29,16 @@
                     <tr>
                         <td>{{ $data->kode_mapel }}</td>
                         <td>{{ $data->nama_mapel }}</td>
-                        <td>
-                            @if ($data->jenis_mapel == 0)
-                                Pengetahuan
-                            @else
-                                Sikap
-                            @endif
-                        </td>
+                        @if($data->jenis_mapel == 0)
+                            <td>Pengetahuan</td>
+                        @elseif($data->jenis_mapel == 1)
+                            <td>Keterampilan</td>
+                        @else
+                            <td>Sikap</td>
+                        @endif
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-success" href="{{url('/mapel/edit',$data->id_mapel)}}"><i class="fa fa-fw fa-check-square-o"></i></a>
-                                <button class="btn btn-danger" data-href="{{url('/mapel/delete',$data->id_mapel)}}" data-toggle="modal" data-target="#confirm-delete">
+                                <button class="btn btn-danger" data-href="{{ url('/mapelkelas/delete',$data->id_mk) }}" data-toggle="modal" data-target="#confirm-delete">
                                     <i class="fa fa-fw fa-remove"></i>
                                 </button>
                             </div>
@@ -53,7 +52,7 @@
     </div>
 </div>
 @else
-    <div class="row">
+<div class="row">
     <div class="col-lg-12">
         <strong>DATA TIDAK DITEMUKAN</strong>
     </div>

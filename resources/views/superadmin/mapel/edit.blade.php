@@ -29,8 +29,7 @@
                 <div class="col-sm-5">
                     <select class="form-control select" style="width: 100%;" name="jenis_mapel" id="jenis_mapel">
                         <option id="pengetahuan" value="0">Pengetahuan</option>
-                        <option id="keterampilan" value="1">Keterampilan</option>
-                        <option id="sikap" value="2">Sikap</option>
+                        <option id="sikap" value="1">Sikap</option>
                     </select>
                 </div>
             </div>
@@ -49,9 +48,7 @@ $(document).ready( function () {
     var jenisMapel = <?php echo $edit->jenis_mapel; ?>;
     if(jenisMapel == 0){
         $('#pengetahuan').attr("selected","selected");
-    } else if(jenisMapel == 1) {
-        $('#keterampilan').attr("selected","selected");
-    } else{
+    }  else{
         $('#sikap').attr("selected","selected");
     }
 });

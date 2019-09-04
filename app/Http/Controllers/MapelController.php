@@ -20,10 +20,8 @@ class MapelController extends Controller {
     public function indexMenu($menu){
         if($menu == 'pengetahuan')
             return $this->getMapel(0);
-        else if($menu == 'keterampilan')
-            return $this->getMapel(1);
         else
-            return $this->getMapel(2);
+            return $this->getMapel(1);
     }
 
     private function getMapel($index){
@@ -40,46 +38,6 @@ class MapelController extends Controller {
             })->paginate(10);
         } else {
             $data['datas'] = Mapel::where('jenis_mapel', $index)
-            ->orderBy('id_mapel','asc')->paginate(10);
-        }
-        $data['menumapel'] = 'active';
-        return view('superadmin.mapel.index')->with($data);
-    }
-
-    public function getPengetahuan() {
-        $data['tabContent'] = 'superadmin.mapel.list';
-        $request = Request::all();
-        $data['tabs'][0] = 'active';
-        $searchtext = isset($request['searchtext']) ? $request['searchtext'] : null;
-        if($searchtext != null){
-            $data['datas'] = Mapel::where('jenis_mapel', '0')
-            ->where(function($query)  use ($searchtext){
-                $query
-                    ->where('kode_kelas',"LIKE",'%'.$searchtext.'%')
-                    ->orWhere('nama_mapel',"LIKE",'%'.$searchtext.'%');
-            })->paginate(10);
-        } else {
-            $data['datas'] = Mapel::where('jenis_mapel', '0')
-            ->orderBy('id_mapel','asc')->paginate(10);
-        }
-        $data['menumapel'] = 'active';
-        return view('superadmin.mapel.index')->with($data);
-    }
-
-    public function getKeterampilan() {
-        $data['tabContent'] = 'superadmin.mapel.list';
-        $request = Request::all();
-        $data['tabs'][1] = 'active';
-        $searchtext = isset($request['searchtext']) ? $request['searchtext'] : null;
-        if($searchtext != null){
-            $data['datas'] = Mapel::where('jenis_mapel', '1')
-            ->where(function($query)  use ($searchtext){
-                $query
-                    ->where('kode_kelas',"LIKE",'%'.$searchtext.'%')
-                    ->orWhere('nama_mapel',"LIKE",'%'.$searchtext.'%');
-            })->paginate(10);
-        } else {
-            $data['datas'] = Mapel::where('jenis_mapel', '1')
             ->orderBy('id_mapel','asc')->paginate(10);
         }
         $data['menumapel'] = 'active';

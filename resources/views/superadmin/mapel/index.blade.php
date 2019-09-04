@@ -15,8 +15,7 @@ if(!isset($searchtext)){
     <div class="nav-tabs-custom ">
         <ul class="nav nav-tabs">
             <li class="{{isset($tabs[0]) ? $tabs[0] : null }}" ><a href="{{url('/mapel/daftar/pengetahuan')}}">Pengetahuan</a></li>
-            <li class="{{isset($tabs[1]) ? $tabs[1] : null }}" ><a href="{{url('/mapel/daftar/keterampilan')}}">Keterampilan</a></li>
-            <li class="{{isset($tabs[2]) ? $tabs[2] : null }}" ><a href="{{url('/mapel/daftar/sikap')}}">Sikap</a></li>
+            <li class="{{isset($tabs[1]) ? $tabs[1] : null }}" ><a href="{{url('/mapel/daftar/sikap')}}">Sikap</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active">

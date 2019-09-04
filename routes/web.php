@@ -24,6 +24,7 @@ Route::get('/mapel/daftar/{menu}', 'MapelController@indexMenu');
 
 Route::get('/siswakelas', 'SiswaKelasController@index');
 Route::get('/mapelkelas', 'MapelKelasController@index');
+Route::get('/mapelkelas/daftar/{menu}', 'MapelKelasController@indexMenu');
 Route::get('/nilai', 'NilaiController@index');
 
 AdvancedRoute::controllers([
@@ -35,6 +36,7 @@ AdvancedRoute::controllers([
     '/mapel' => 'MapelController',
     '/kelas' => 'KelasController',
     '/siswakelas' => 'SiswaKelasController',
+    '/mapelkelas' => 'MapelKelasController',
 ]);
 
 Auth::routes();

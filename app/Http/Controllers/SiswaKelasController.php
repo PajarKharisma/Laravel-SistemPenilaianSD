@@ -48,13 +48,13 @@ class SiswaKelasController extends Controller {
                 $query->select('id_siswa')
                 ->from('siswa_kelas');
             })
-            ->orderBy('id_siswa','asc')->paginate(30);
+            ->orderBy('nama_siswa','asc')->paginate(30);
         }else{
             $data['datas'] = Siswa::whereNotIn('id_siswa', function($query){
                 $query->select('id_siswa')
                 ->from('siswa_kelas');
             })
-            ->orderBy('id_siswa','asc')
+            ->orderBy('nama_siswa','asc')
             ->where('tahun_mulai', $tahun)
             ->paginate(30);
         }

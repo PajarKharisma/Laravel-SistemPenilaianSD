@@ -33,7 +33,8 @@ AdvancedRoute::controllers([
     '/guru' => 'GuruController',
     '/siswa' => 'SiswaController',
     '/mapel' => 'MapelController',
-    '/kelas' => 'KelasController'
+    '/kelas' => 'KelasController',
+    '/siswakelas' => 'SiswaKelasController',
 ]);
 
 Auth::routes();

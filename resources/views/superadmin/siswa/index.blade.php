@@ -36,6 +36,8 @@ if(!isset($searchtext)){
                             <tr class="bg-primary">
                                 <th> NIS </th>
                                 <th> Nama Siswa </th>
+                                <th> Jenis Kelamin </th>
+                                <th> Tahun Mulai </th>
                                 <th> Aksi </th>
                             </tr>
                         </thead>
@@ -44,6 +46,12 @@ if(!isset($searchtext)){
                             <tr>
                                 <td>{{$data->nis}}</td>
                                 <td>{{$data->nama_siswa}}</td>
+                                @if($data->jenis_kelamin == 0)
+                                <td>Perempuan</td>
+                                @else
+                                <td>Laki - laki</td>
+                                @endif
+                                <td>{{$data->tahun_mulai}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="btn btn-success" href="{{url('/siswa/edit',$data->id_siswa)}}"><i class="fa fa-fw fa-check-square-o"></i></a>

@@ -24,6 +24,23 @@
                 </div>
             </div>
 
+            <div class="form-group ">
+                <label for="jenis_kelamin" class="col-sm-3 control-label">Jenis Kelamin</label>
+                <div class="col-sm-5">
+                    <select class="form-control select" style="width: 100%;" name="jenis_kelamin" id="jenis_kelamin">
+                        <option value="0">Perempuan</option>
+                        <option value="1">Laki - Laki</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label for="tahun_mulai" class="col-sm-3 control-label">Tahun Mulai</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="tahun_mulai" name="tahun_mulai" placeholder="Masukan Tahun Mulai" required>
+                </div>
+            </div>
+
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>

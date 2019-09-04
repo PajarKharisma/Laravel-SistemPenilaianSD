@@ -22,6 +22,7 @@
     {!! Html::script('lte/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
     <!-- AdminLTE App -->
     {!! Html::script('lte/dist/js/adminlte.min.js') !!}
+    {!! Html::script('lte/plugins/iCheck/icheck.min.js') !!}
     @yield('scripts')
 </head>
 <body class="hold-transition skin-blue layout-boxed sidebar-mini" background="{{ asset('img/bg/login-bg.jpg') }}">

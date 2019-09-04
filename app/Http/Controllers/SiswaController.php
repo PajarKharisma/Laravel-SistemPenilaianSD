@@ -20,7 +20,8 @@ class SiswaController extends Controller {
             $data['datas'] = Siswa::where(function($query)  use ($searchtext){
                 $query
                     ->where('nama_siswa',"LIKE",'%'.$searchtext.'%')
-                    ->orWhere('nis',"LIKE",$searchtext.'%');
+                    ->orWhere('nis',"LIKE",$searchtext.'%')
+                    ->orWhere('tahun_mulai',"LIKE",$searchtext.'%');
             })->paginate(10);
         } else {
             $data['datas'] = Siswa::orderBy('id_siswa','asc')->paginate(10);
@@ -41,6 +42,8 @@ class SiswaController extends Controller {
             $add = new Siswa();
             $add->nis = $request['nis'];
             $add->nama_siswa = $request['nama_siswa'];
+            $add->jenis_kelamin = $request['jenis_kelamin'];
+            $add->tahun_mulai = $request['tahun_mulai'];
             $add->save();
             return redirect()->to('/siswa');
         } else {
@@ -59,16 +62,22 @@ class SiswaController extends Controller {
         $request = Request::all();
         $validator = Validator::make($request,[
             'nis' =>  'required',
-            'nama_siswa' =>  'required'
+            'nama_siswa' =>  'required',
+            'jenis_kelamin' => 'required',
+            'tahun_mulai' => 'required|numeric'
         ]);
         
         if($validator->passes()) {
             $nis = $request['nis'];
             $nama_siswa = $request['nama_siswa'];
+            $jenis_kelamin = $request['jenis_kelamin'];
+            $tahun_mulai = $request['tahun_mulai'];
             Siswa::where('id_siswa', $id)
             ->update([
                 'nis' => $nis,
-                'nama_siswa' => $nama_siswa
+                'nama_siswa' => $nama_siswa,
+                'jenis_kelamin' => $jenis_kelamin,
+                'tahun_mulai' => $tahun_mulai
             ]);
             return redirect()->to('/siswa');
         } else {

@@ -18,7 +18,7 @@
     {!! Html::script('lte/bower_components/jquery/dist/jquery.min.js') !!}
     {!! Html::script('lte/bower_components/jquery-ui/jquery-ui.min.js') !!}
     {!! Html::script('lte/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
-    {!! HTML::script('lte/plugins/iCheck/icheck.min.js') !!}
+    {!! Html::script('lte/plugins/iCheck/icheck.min.js') !!}
     <!-- AdminLTE App -->
     {!! Html::script('lte/dist/js/adminlte.min.js') !!}
     <script>
@@ -53,14 +53,14 @@
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> Ingat saya
-                        </label>
+                            <label>
+                                <input type="checkbox"> Ingat saya
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
-                </div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
+                    </div>
                 </div>
             </form>
         </div>

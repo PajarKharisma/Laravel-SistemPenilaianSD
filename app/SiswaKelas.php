@@ -11,7 +11,6 @@ class SiswaKelas extends Model {
     public $timestamps = false;
 
     public static $rules = [
-        'id_sk' =>   'required|unique:siswa_kelas,id_sk|numeric',
         'id_siswa' =>  'required|exists:siswa,id_siswa',
         'id_kelas' =>  'required|exists:kelas,id_kelas'
     ];

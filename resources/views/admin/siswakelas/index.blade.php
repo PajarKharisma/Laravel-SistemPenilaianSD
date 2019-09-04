@@ -23,7 +23,7 @@ if(!isset($searchtext)){
             <div class="col-md-6">
                 <a class="btn btn-success btn-sm pull-right" href="{{url('/siswakelas/create')}}">
                     <i class="fa fa-plus"> Data Baru</i>
-                </a> 
+                </a>
             </div>
         </div>
 

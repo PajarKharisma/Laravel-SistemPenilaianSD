@@ -6,7 +6,7 @@
     <div class="box-header with-border">
         <h3 class="box-title">Input Data Guru</h3>
     </div>
-    <form class="form-horizontal" method="post" action="{{url('guru/store/')}}">
+    <form class="form-horizontal" method="post" action="{{ url('guru/store/') }}">
         @csrf
         <div class="box-body">
 

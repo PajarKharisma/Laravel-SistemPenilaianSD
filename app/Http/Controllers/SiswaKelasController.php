@@ -44,14 +44,40 @@ class SiswaKelasController extends Controller {
 
     public function getCreate($tahun=null) {
         if($tahun == null || $tahun == 0){
-            $data['datas'] = Siswa::orderBy('id_siswa','asc')->paginate(30);
+            $data['datas'] = Siswa::whereNotIn('id_siswa', function($query){
+                $query->select('id_siswa')
+                ->from('siswa_kelas');
+            })
+            ->orderBy('id_siswa','asc')->paginate(30);
         }else{
-            $data['datas'] = Siswa::orderBy('id_siswa','asc')
+            $data['datas'] = Siswa::whereNotIn('id_siswa', function($query){
+                $query->select('id_siswa')
+                ->from('siswa_kelas');
+            })
+            ->orderBy('id_siswa','asc')
             ->where('tahun_mulai', $tahun)
             ->paginate(30);
         }
         $data['tahun'] = ($tahun==null) ? 0 : $tahun;
         $data['menusiswakelas'] = 'active';
         return view('admin.siswakelas.create')->with($data);
+    }
+
+    public function postStore() {
+        $request = Request::all();
+        $id_kelas = Auth::user()->id_kelas;
+        $siswas = $request['siswa'];
+        foreach($siswas as $siswa){
+            $add = new SiswaKelas();
+            $add->id_siswa = $siswa;
+            $add->id_kelas = $id_kelas;
+            $add->save();
+        }
+        return redirect()->to('/siswakelas');
+    }
+
+    public function getDelete($id) {
+        SiswaKelas::where('id_sk', $id)->delete();
+        return redirect()->to('/siswakelas');
     }
 }

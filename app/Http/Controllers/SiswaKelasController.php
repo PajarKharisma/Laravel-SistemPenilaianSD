@@ -76,8 +76,14 @@ class SiswaKelasController extends Controller {
         return redirect()->to('/siswakelas');
     }
 
-    public function getDelete($id) {
-        SiswaKelas::where('id_sk', $id)->delete();
+    public function postDelete() {
+        $request = Request::all();
+        $siswas = isset($request['siswa']) ? $request['siswa'] : null;
+        if($siswas != null){
+            foreach($siswas as $siswa){
+                SiswaKelas::where('id_sk', $siswa)->delete();
+            }
+        }
         return redirect()->to('/siswakelas');
     }
 }

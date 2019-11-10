@@ -92,8 +92,14 @@ class MapelKelasController extends Controller {
         return redirect()->to('/mapelkelas');
     }
 
-    public function getDelete($id) {
-        MapelKelas::where('id_mk', $id)->delete();
+    public function postDelete() {
+        $request = Request::all();
+        $mapels = isset($request['mapel']) ? $request['mapel'] : null;
+        if($mapels != null){
+            foreach($mapels as $mapel){
+                MapelKelas::where('id_mk', $mapel)->delete();
+            }
+        }
         return redirect()->to('/mapelkelas');
     }
 }

@@ -12,16 +12,18 @@
 </div>
 
 @if(isset($datas) && $datas->count() > 0)
+<form class="form-horizontal" method="post" id="formdata" action="{{ url('mapelkelas/delete') }}">
+@csrf
 <div class="row">
     <div class="col-lg-12">
-        <div class="table-responsive" style=" height: 345px !important;overflow: auto">
+        <div class="table-responsive" style=" height: 290px !important;overflow: auto">
             <table class="table table-striped table-advance table-bordered table-hover">
                 <thead>
                     <tr class="bg-primary">
                         <th> Kode Mata Pelajaran </th>
                         <th> Nama Mata Pelajaran </th>
                         <th> Jenis Mata Pelajaran </th>
-                        <th> Aksi </th>
+                        <th> Pilih </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,10 +39,8 @@
                             <td>Sikap</td>
                         @endif
                         <td>
-                            <div class="btn-group">
-                                <button class="btn btn-danger" data-href="{{ url('/mapelkelas/delete',$data->id_mk) }}" data-toggle="modal" data-target="#confirm-delete">
-                                    <i class="fa fa-fw fa-remove"></i>
-                                </button>
+                            <div class="form-check">
+                                <input type="checkbox" value="{{ $data->id_mk }}" name="mapel[]" class="form-check-input" id="">
                             </div>
                         </td>
                     </tr>
@@ -51,6 +51,10 @@
         </div>
     </div>
 </div>
+<div class="box-footer">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">Hapus</button>
+</div>
+</form>
 @else
 <div class="row">
     <div class="col-lg-12">

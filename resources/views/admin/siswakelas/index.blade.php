@@ -28,45 +28,49 @@ if(!isset($searchtext)){
         </div>
 
         @if(isset($datas) && $datas->count() > 0)
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="table-responsive" style=" height: 425px !important;overflow: auto">
-                    <table class="table table-striped table-advance table-bordered table-hover">
-                        <thead>
-                            <tr class="bg-primary">
-                                <th> NIS </th>
-                                <th> Nama Siswa </th>
-                                <th> Jenis Kelamin </th>
-                                <th> Tahun Mulai </th>
-                                <th> Aksi </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($datas as $data)
-                            <tr>
-                                <td>{{ $data->nis }}</td>
-                                <td>{{ $data->nama_siswa }}</td>
-                                @if($data->jenis_kelamin == 0)
-                                    <td>Perempuan</td>
-                                @else
-                                    <td>Laki - laki</td>
-                                @endif
-                                <td>{{ $data->tahun_mulai }}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-danger" data-href="{{ url('/siswakelas/delete',$data->id_sk) }}" data-toggle="modal" data-target="#confirm-delete">
-                                            <i class="fa fa-fw fa-remove"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $datas->render() }}
+        <form class="form-horizontal" method="post" id="formdata" action="{{ url('siswakelas/delete') }}">
+            @csrf
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive" style=" height: 375px !important;overflow: auto">
+                        <table class="table table-striped table-advance table-bordered table-hover">
+                            <thead>
+                                <tr class="bg-primary">
+                                    <th> NIS </th>
+                                    <th> Nama Siswa </th>
+                                    <th> Jenis Kelamin </th>
+                                    <th> Tahun Mulai </th>
+                                    <th> Hapus </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($datas as $data)
+                                <tr>
+                                    <td>{{ $data->nis }}</td>
+                                    <td>{{ $data->nama_siswa }}</td>
+                                    @if($data->jenis_kelamin == 0)
+                                        <td>Perempuan</td>
+                                    @else
+                                        <td>Laki - laki</td>
+                                    @endif
+                                    <td>{{ $data->tahun_mulai }}</td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" value="{{ $data->id_sk }}" name="siswa[]" class="form-check-input" id="">
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $datas->render() }}
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="box-footer">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">Hapus</button>
+            </div>
+        </form>
         @else
         <div class="row">
             <div class="col-lg-12">
@@ -88,8 +92,8 @@ if(!isset($searchtext)){
                     Yakin ingin menghapus?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger btn-ok">Delete</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <a id="submit" class="btn btn-danger btn-ok">Hapus</a>
                 </div>
             </div>
         </div>
@@ -103,6 +107,10 @@ jQuery(document).ready(function(){
 	$('#confirm-delete').on('show.bs.modal', function(e) {
     	$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	});
+
+    $('#submit').click(function(){
+        $('#formdata').submit();
+    });
 });
 </script>
 @endsection
